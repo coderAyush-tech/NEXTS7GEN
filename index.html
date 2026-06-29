@@ -1,0 +1,1246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5, user-scalable=yes" />
+  <title>next7gen · institute</title>
+  <!-- Google Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --bg-body: #0a0a1a;
+      --bg-app: rgba(16, 16, 36, 0.85);
+      --bg-card: rgba(255, 255, 255, 0.01);
+      --bg-nav: rgba(255, 255, 255, 0.02);
+      --bg-input: rgba(255, 255, 255, 0.02);
+      --text-primary: #ffffff;
+      --text-secondary: #d4d4f0;
+      --text-muted: #8b8bb0;
+      --border-color: rgba(255, 255, 255, 0.04);
+      --border-hover: rgba(124, 58, 237, 0.15);
+      --shadow-color: rgba(124, 58, 237, 0.1);
+      --gradient-start: #7c3aed;
+      --gradient-end: #6366f1;
+      --orb1: rgba(120, 80, 240, 0.08);
+      --orb2: rgba(99, 102, 241, 0.06);
+      --badge-bg: rgba(16, 185, 129, 0.15);
+      --badge-text: #34d399;
+    }
+
+    [data-theme="light"] {
+      --bg-body: #f0f2f8;
+      --bg-app: rgba(255, 255, 255, 0.92);
+      --bg-card: rgba(0, 0, 0, 0.01);
+      --bg-nav: rgba(0, 0, 0, 0.02);
+      --bg-input: rgba(0, 0, 0, 0.02);
+      --text-primary: #0a0a1a;
+      --text-secondary: #1a1a3e;
+      --text-muted: #5a5a7a;
+      --border-color: rgba(0, 0, 0, 0.06);
+      --border-hover: rgba(124, 58, 237, 0.2);
+      --shadow-color: rgba(124, 58, 237, 0.08);
+      --orb1: rgba(120, 80, 240, 0.04);
+      --orb2: rgba(99, 102, 241, 0.03);
+      --badge-bg: rgba(16, 185, 129, 0.1);
+      --badge-text: #059669;
+    }
+
+    body {
+      font-family: 'Space Grotesk', sans-serif;
+      background: var(--bg-body);
+      min-height: 100vh;
+      padding: 1.5rem;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      transition: background 0.4s ease;
+      background-image: 
+        radial-gradient(ellipse at 20% 50%, var(--orb1) 0%, transparent 60%),
+        radial-gradient(ellipse at 80% 50%, var(--orb2) 0%, transparent 60%),
+        radial-gradient(ellipse at 50% 100%, rgba(180, 60, 220, 0.03) 0%, transparent 40%);
+    }
+
+    /* ---- main app container ---- */
+    .app {
+      max-width: 1400px;
+      width: 100%;
+      background: var(--bg-app);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-radius: 2.5rem;
+      padding: 2rem 2.5rem 2.8rem;
+      box-shadow: 0 40px 80px -20px rgba(0, 0, 0, 0.3), 0 0 0 1px var(--border-color) inset;
+      border: 1px solid var(--border-color);
+      position: relative;
+      overflow: hidden;
+      transition: all 0.4s ease;
+    }
+
+    /* animated gradient orbs */
+    .app::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -20%;
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, var(--orb1), transparent 70%);
+      border-radius: 50%;
+      pointer-events: none;
+      animation: floatOrb 20s ease-in-out infinite;
+      transition: background 0.4s ease;
+    }
+
+    .app::after {
+      content: '';
+      position: absolute;
+      bottom: -30%;
+      left: -10%;
+      width: 400px;
+      height: 400px;
+      background: radial-gradient(circle, var(--orb2), transparent 70%);
+      border-radius: 50%;
+      pointer-events: none;
+      animation: floatOrb 25s ease-in-out infinite reverse;
+      transition: background 0.4s ease;
+    }
+
+    @keyframes floatOrb {
+      0%, 100% { transform: translate(0, 0) scale(1); }
+      33% { transform: translate(-30px, 20px) scale(1.1); }
+      66% { transform: translate(20px, -10px) scale(0.9); }
+    }
+
+    /* ---- navigation ---- */
+    .navbar {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem 1.5rem;
+      margin-bottom: 2.5rem;
+      padding-bottom: 0.8rem;
+      border-bottom: 1px solid var(--border-color);
+      position: relative;
+      z-index: 1;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+    }
+
+    .brand-logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      padding: 0.2rem 1.2rem 0.2rem 0.6rem;
+      border-radius: 60px;
+      background: linear-gradient(135deg, rgba(120, 80, 240, 0.15), rgba(60, 130, 240, 0.05));
+      border: 1px solid rgba(120, 80, 240, 0.12);
+      transition: all 0.3s ease;
+    }
+    .brand-logo:hover {
+      border-color: rgba(120, 80, 240, 0.25);
+      transform: scale(1.02);
+    }
+    .brand-logo img {
+      height: 50px;
+      width: auto;
+      border-radius: 12px;
+      display: block;
+    }
+    .brand-logo .logo-text {
+      font-weight: 700;
+      font-size: 1.5rem;
+      letter-spacing: -0.02em;
+      background: linear-gradient(135deg, var(--text-primary), #a78bfa);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    .brand-logo .logo-text small {
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: var(--text-muted);
+      background: var(--bg-nav);
+      padding: 0.1rem 0.8rem;
+      border-radius: 40px;
+      border: 1px solid var(--border-color);
+      margin-left: 4px;
+    }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      flex-wrap: wrap;
+    }
+
+    .nav-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.3rem;
+      background: var(--bg-nav);
+      padding: 0.3rem;
+      border-radius: 60px;
+      border: 1px solid var(--border-color);
+    }
+
+    .nav-btn {
+      background: transparent;
+      border: none;
+      padding: 0.6rem 1.6rem;
+      border-radius: 40px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: 'Space Grotesk', sans-serif;
+      position: relative;
+    }
+
+    .nav-btn i {
+      font-size: 1rem;
+      color: var(--text-muted);
+    }
+
+    .nav-btn.active {
+      background: linear-gradient(135deg, rgba(120, 80, 240, 0.2), rgba(60, 130, 240, 0.1));
+      color: var(--text-primary);
+      box-shadow: 0 0 30px rgba(120, 80, 240, 0.05);
+    }
+    .nav-btn.active i {
+      color: #a78bfa;
+    }
+
+    .nav-btn:hover:not(.active) {
+      color: var(--text-secondary);
+      background: var(--bg-card);
+    }
+
+    /* ---- Theme Toggle ---- */
+    .theme-toggle {
+      background: var(--bg-nav);
+      border: 1px solid var(--border-color);
+      border-radius: 60px;
+      padding: 0.3rem 0.8rem;
+      display: flex;
+      gap: 0.3rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    .theme-toggle button {
+      background: transparent;
+      border: none;
+      padding: 0.5rem 0.8rem;
+      border-radius: 40px;
+      font-size: 1rem;
+      cursor: pointer;
+      color: var(--text-muted);
+      transition: all 0.3s ease;
+      font-family: 'Space Grotesk', sans-serif;
+    }
+    .theme-toggle button.active {
+      background: linear-gradient(135deg, rgba(120, 80, 240, 0.2), rgba(60, 130, 240, 0.1));
+      color: var(--text-primary);
+    }
+    .theme-toggle button:hover:not(.active) {
+      color: var(--text-secondary);
+    }
+
+    /* ---- page container ---- */
+    .page {
+      display: block;
+      animation: fadePage 0.4s ease;
+      position: relative;
+      z-index: 1;
+    }
+
+    @keyframes fadePage {
+      0% { opacity: 0; transform: translateY(12px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    .page.hidden {
+      display: none;
+    }
+
+    /* ----- HOME PAGE ----- */
+    .hero {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 3rem;
+      align-items: center;
+      margin: 1rem 0 2rem;
+    }
+
+    .hero h2 {
+      font-size: 3.8rem;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      line-height: 1.05;
+      background: linear-gradient(135deg, var(--text-primary) 30%, #a78bfa 60%, #818cf8 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    .hero .highlight {
+      background: linear-gradient(135deg, #a78bfa, #818cf8);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    .hero p {
+      font-size: 1.15rem;
+      color: var(--text-muted);
+      max-width: 480px;
+      margin: 0.8rem 0 1.8rem;
+      font-weight: 400;
+      line-height: 1.7;
+    }
+    .hero-stats {
+      display: flex;
+      gap: 2rem;
+      margin-top: 0.5rem;
+      flex-wrap: wrap;
+    }
+    .hero-stats div {
+      background: var(--bg-card);
+      backdrop-filter: blur(4px);
+      padding: 0.6rem 1.8rem;
+      border-radius: 60px;
+      border: 1px solid var(--border-color);
+      font-weight: 700;
+      color: var(--text-secondary);
+      transition: all 0.3s ease;
+    }
+    .hero-stats div:hover {
+      border-color: rgba(120, 80, 240, 0.2);
+    }
+    .hero-stats span {
+      font-weight: 400;
+      color: var(--text-muted);
+      margin-left: 6px;
+    }
+    .hero-right {
+      background: linear-gradient(135deg, rgba(120, 80, 240, 0.06), rgba(60, 130, 240, 0.03));
+      border-radius: 2.5rem;
+      padding: 2.5rem 2rem;
+      border: 1px solid var(--border-color);
+      text-align: center;
+      backdrop-filter: blur(4px);
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-right::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle at center, rgba(120, 80, 240, 0.03), transparent 70%);
+      animation: pulseGlow 8s ease-in-out infinite;
+    }
+    @keyframes pulseGlow {
+      0%, 100% { opacity: 0.3; transform: scale(1); }
+      50% { opacity: 1; transform: scale(1.1); }
+    }
+    .hero-right .logo-big {
+      font-size: 3.5rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      background: linear-gradient(135deg, #a78bfa, #818cf8);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      position: relative;
+      z-index: 1;
+    }
+    .hero-right h3 {
+      margin-top: 0.6rem;
+      font-weight: 600;
+      color: var(--text-secondary);
+      position: relative;
+      z-index: 1;
+    }
+    .hero-right p {
+      color: var(--text-muted);
+      margin-top: 0.3rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* ----- BUTTONS ----- */
+    .btn-sell, .btn-primary {
+      background: linear-gradient(135deg, #7c3aed, #6366f1);
+      border: none;
+      color: white;
+      padding: 0.8rem 2rem;
+      border-radius: 60px;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-size: 0.95rem;
+      font-family: 'Space Grotesk', sans-serif;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      position: relative;
+      overflow: hidden;
+    }
+    .btn-sell::after, .btn-primary::after {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(255, 255, 255, 0.05), transparent 60%);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    .btn-sell:hover::after, .btn-primary:hover::after {
+      opacity: 1;
+    }
+    .btn-sell:hover, .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 40px rgba(124, 58, 237, 0.3);
+    }
+    .btn-sell i, .btn-primary i {
+      color: rgba(255, 255, 255, 0.8);
+    }
+
+    /* ----- COURSES ----- */
+    .section-title {
+      font-size: 2.2rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 0.3rem;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .section-title .badge {
+      font-size: 0.7rem;
+      background: var(--badge-bg);
+      color: var(--badge-text);
+      padding: 0.1rem 1rem;
+      border-radius: 40px;
+      border: 1px solid rgba(16, 185, 129, 0.08);
+      font-weight: 600;
+      letter-spacing: 0.03em;
+    }
+    .section-sub {
+      color: var(--text-muted);
+      margin-bottom: 1.5rem;
+    }
+
+    .courses-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 2rem;
+      margin: 1.5rem 0 1rem;
+    }
+    .course-card {
+      background: var(--bg-card);
+      backdrop-filter: blur(6px);
+      border-radius: 2rem;
+      padding: 2rem 1.8rem;
+      border: 1px solid var(--border-color);
+      transition: all 0.4s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    .course-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(135deg, rgba(124, 58, 237, 0.03), rgba(99, 102, 241, 0.01));
+      opacity: 0;
+      transition: opacity 0.4s ease;
+    }
+    .course-card:hover::before {
+      opacity: 1;
+    }
+    .course-card:hover {
+      transform: translateY(-6px);
+      border-color: var(--border-hover);
+      box-shadow: 0 20px 60px -20px var(--shadow-color);
+    }
+    .course-card .logo-mini {
+      font-weight: 700;
+      font-size: 1.2rem;
+      background: linear-gradient(135deg, rgba(124, 58, 237, 0.15), rgba(99, 102, 241, 0.05));
+      padding: 0.3rem 1rem;
+      border-radius: 12px;
+      display: inline-block;
+      margin-bottom: 1rem;
+      color: #a78bfa;
+      border: 1px solid rgba(124, 58, 237, 0.06);
+    }
+    .course-card h4 {
+      font-size: 1.4rem;
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+    .course-card .price {
+      font-weight: 700;
+      font-size: 1.5rem;
+      background: linear-gradient(135deg, #a78bfa, #818cf8);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      margin: 0.4rem 0 0.8rem;
+    }
+    .course-card .price small {
+      font-weight: 400;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      background: none;
+      -webkit-text-fill-color: var(--text-muted);
+    }
+    .course-card .features {
+      display: flex;
+      gap: 1rem;
+      margin: 0.5rem 0 1rem;
+      flex-wrap: wrap;
+    }
+    .course-card .features span {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      background: var(--bg-card);
+      padding: 0.2rem 0.8rem;
+      border-radius: 40px;
+      border: 1px solid var(--border-color);
+    }
+
+    /* ----- BLOG ----- */
+    .blog-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin: 1.5rem 0 1rem;
+    }
+    .blog-card {
+      background: var(--bg-card);
+      backdrop-filter: blur(6px);
+      border-radius: 2rem;
+      padding: 0;
+      border: 1px solid var(--border-color);
+      transition: all 0.4s ease;
+      overflow: hidden;
+    }
+    .blog-card:hover {
+      transform: translateY(-6px);
+      border-color: var(--border-hover);
+      box-shadow: 0 20px 60px -20px var(--shadow-color);
+    }
+    .blog-card .blog-image {
+      height: 200px;
+      background: linear-gradient(135deg, rgba(124, 58, 237, 0.1), rgba(99, 102, 241, 0.05));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3rem;
+      color: #a78bfa;
+      border-bottom: 1px solid var(--border-color);
+      position: relative;
+      overflow: hidden;
+    }
+    .blog-card .blog-image .blog-tag {
+      position: absolute;
+      top: 1rem;
+      left: 1rem;
+      background: rgba(124, 58, 237, 0.2);
+      backdrop-filter: blur(10px);
+      color: #a78bfa;
+      padding: 0.2rem 1rem;
+      border-radius: 40px;
+      font-size: 0.7rem;
+      font-weight: 600;
+      border: 1px solid rgba(124, 58, 237, 0.1);
+    }
+    .blog-card .blog-content {
+      padding: 1.5rem;
+    }
+    .blog-card .blog-content .blog-date {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      margin-bottom: 0.5rem;
+    }
+    .blog-card .blog-content h4 {
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: 0.5rem;
+    }
+    .blog-card .blog-content p {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      line-height: 1.6;
+    }
+    .blog-card .blog-content .read-more {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: #a78bfa;
+      font-weight: 600;
+      font-size: 0.85rem;
+      margin-top: 0.8rem;
+      cursor: pointer;
+      transition: gap 0.3s ease;
+      text-decoration: none;
+    }
+    .blog-card .blog-content .read-more:hover {
+      gap: 12px;
+    }
+
+    /* ----- ABOUT ----- */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      margin: 1.5rem 0;
+    }
+    .about-text {
+      background: var(--bg-card);
+      backdrop-filter: blur(4px);
+      padding: 2rem;
+      border-radius: 2rem;
+      border: 1px solid var(--border-color);
+    }
+    .about-text h3 {
+      font-size: 2.2rem;
+      font-weight: 700;
+      color: var(--text-primary);
+    }
+    .about-text h3 i {
+      color: #a78bfa;
+      margin-right: 10px;
+    }
+    .about-text p {
+      margin-top: 0.8rem;
+      color: var(--text-muted);
+      line-height: 1.7;
+    }
+    .about-text .highlight-text {
+      color: var(--text-secondary);
+      font-weight: 500;
+    }
+    .about-stats {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+    .about-stats div {
+      background: var(--bg-card);
+      padding: 0.6rem 1.5rem;
+      border-radius: 60px;
+      font-weight: 600;
+      color: var(--text-secondary);
+      border: 1px solid var(--border-color);
+      transition: all 0.3s ease;
+    }
+    .about-stats div:hover {
+      border-color: rgba(120, 80, 240, 0.2);
+    }
+    .about-stats span {
+      font-weight: 400;
+      color: var(--text-muted);
+    }
+
+    .about-image {
+      background: var(--bg-card);
+      border-radius: 2.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0;
+      border: 1px solid var(--border-color);
+      backdrop-filter: blur(4px);
+      background: linear-gradient(135deg, rgba(124, 58, 237, 0.04), rgba(99, 102, 241, 0.02));
+      overflow: hidden;
+      min-height: 320px;
+      position: relative;
+    }
+    .about-image::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(124, 58, 237, 0.03), transparent);
+      pointer-events: none;
+    }
+    .about-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.4s ease;
+    }
+    .about-image:hover img {
+      transform: scale(1.02);
+    }
+
+    /* ----- ADMISSION ----- */
+    .admission-wrapper {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 2.5rem;
+      margin-top: 0.5rem;
+    }
+    .form-card {
+      background: var(--bg-card);
+      backdrop-filter: blur(6px);
+      border-radius: 2.5rem;
+      padding: 2rem;
+      border: 1px solid var(--border-color);
+    }
+    .form-card h2 {
+      font-weight: 700;
+      font-size: 1.8rem;
+      color: var(--text-primary);
+      margin-bottom: 0.2rem;
+    }
+    .form-card h2 i {
+      color: #a78bfa;
+      margin-right: 8px;
+    }
+    .form-card p {
+      color: var(--text-muted);
+    }
+    .form-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+      margin-top: 1rem;
+    }
+    .input-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.3rem;
+    }
+    .input-group label {
+      font-weight: 600;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+    .input-group label i {
+      color: #a78bfa;
+      margin-right: 6px;
+      width: 16px;
+    }
+    .input-group input, .input-group select {
+      padding: 0.9rem 1.2rem;
+      border: 1px solid var(--border-color);
+      border-radius: 30px;
+      font-family: 'Space Grotesk', sans-serif;
+      background: var(--bg-input);
+      color: var(--text-primary);
+      transition: all 0.3s ease;
+      font-size: 1rem;
+    }
+    .input-group input:focus, .input-group select:focus {
+      border-color: rgba(124, 58, 237, 0.3);
+      box-shadow: 0 0 30px rgba(124, 58, 237, 0.03);
+      outline: none;
+    }
+    .input-group input::placeholder {
+      color: var(--text-muted);
+    }
+    .row-duo {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+
+    .excel-panel {
+      background: var(--bg-card);
+      backdrop-filter: blur(6px);
+      border-radius: 2.5rem;
+      padding: 2rem;
+      border: 1px solid var(--border-color);
+    }
+    .excel-panel h3 {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 700;
+      color: var(--text-primary);
+    }
+    .excel-panel h3 i {
+      color: #a78bfa;
+    }
+    .excel-badge {
+      background: var(--badge-bg);
+      color: var(--badge-text);
+      padding: 0.1rem 1rem;
+      border-radius: 40px;
+      font-size: 0.65rem;
+      border: 1px solid rgba(16, 185, 129, 0.08);
+      font-weight: 600;
+      letter-spacing: 0.03em;
+    }
+    .sync-status {
+      background: var(--bg-card);
+      border-radius: 30px;
+      padding: 0.6rem 1rem;
+      margin: 0.8rem 0;
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      color: var(--text-muted);
+      border: 1px solid var(--border-color);
+    }
+    .sync-status .pulse-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #34d399;
+      display: inline-block;
+      animation: pulse 2s ease-in-out infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.4; transform: scale(0.8); }
+    }
+    .preview-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 0.6rem 0;
+      border-bottom: 1px solid var(--border-color);
+      color: var(--text-muted);
+    }
+    .preview-row span:last-child {
+      color: var(--text-secondary);
+      font-weight: 600;
+    }
+    .toast-msg {
+      margin-top: 1rem;
+      padding: 0.7rem 1.2rem;
+      background: rgba(124, 58, 237, 0.1);
+      color: var(--text-secondary);
+      border-radius: 60px;
+      display: none;
+      align-items: center;
+      gap: 12px;
+      border: 1px solid rgba(124, 58, 237, 0.05);
+    }
+    .toast-msg.show { display: flex; }
+
+    /* responsive */
+    @media (max-width: 1024px) {
+      .app { padding: 1.8rem; }
+    }
+
+    @media (max-width: 900px) {
+      .app { padding: 1.5rem; }
+      .hero { grid-template-columns: 1fr; gap: 2rem; }
+      .about-grid { grid-template-columns: 1fr; }
+      .admission-wrapper { grid-template-columns: 1fr; }
+      .row-duo { grid-template-columns: 1fr; }
+      .hero h2 { font-size: 2.8rem; }
+      .about-image { min-height: 200px; }
+      .navbar { flex-direction: column; align-items: stretch; }
+      .nav-right { justify-content: center; }
+      .nav-links { justify-content: center; }
+    }
+
+    @media (max-width: 650px) {
+      .app { padding: 1rem; border-radius: 1.5rem; }
+      .brand-logo img { height: 40px; }
+      .brand-logo .logo-text { font-size: 1.2rem; }
+      .brand-logo .logo-text small { font-size: 0.65rem; }
+      .hero h2 { font-size: 2.2rem; }
+      .hero-stats { gap: 0.8rem; }
+      .hero-stats div { padding: 0.4rem 1.2rem; font-size: 0.85rem; }
+      .hero-right { padding: 1.5rem; }
+      .hero-right .logo-big { font-size: 2.5rem; }
+      .section-title { font-size: 1.6rem; }
+      .courses-grid { grid-template-columns: 1fr; }
+      .blog-grid { grid-template-columns: 1fr; }
+      .about-image { min-height: 160px; }
+      .about-text { padding: 1.2rem; }
+      .about-text h3 { font-size: 1.6rem; }
+      .form-card { padding: 1.2rem; }
+      .excel-panel { padding: 1.2rem; }
+      .nav-btn { padding: 0.4rem 1rem; font-size: 0.8rem; }
+      .nav-btn i { font-size: 0.8rem; }
+      .theme-toggle button { padding: 0.3rem 0.6rem; font-size: 0.8rem; }
+    }
+
+    @media (max-width: 400px) {
+      body { padding: 0.5rem; }
+      .app { padding: 0.8rem; border-radius: 1rem; }
+      .brand-logo { padding: 0.1rem 0.8rem 0.1rem 0.4rem; }
+      .brand-logo img { height: 32px; }
+      .brand-logo .logo-text { font-size: 1rem; }
+      .hero h2 { font-size: 1.8rem; }
+      .hero p { font-size: 0.95rem; }
+      .btn-sell, .btn-primary { padding: 0.6rem 1.2rem; font-size: 0.85rem; }
+    }
+  </style>
+</head>
+<body>
+<div class="app" id="app">
+  <!-- navigation -->
+  <nav class="navbar">
+    <div class="brand">
+      <a href="#" class="brand-logo" onclick="navigateTo('home'); return false;">
+        <img src="WhatsApp Image 2026-06-29 at 10.47.03 PM.jpeg" alt="next7gen logo" />
+        <span class="logo-text">next7gen <small>institute</small></span>
+      </a>
+    </div>
+    <div class="nav-right">
+      <div class="nav-links">
+        <button class="nav-btn active" data-page="home"><i class="fas fa-home"></i> Home</button>
+        <button class="nav-btn" data-page="courses"><i class="fas fa-graduation-cap"></i> Courses</button>
+        <button class="nav-btn" data-page="blog"><i class="fas fa-blog"></i> Blog</button>
+        <button class="nav-btn" data-page="about"><i class="fas fa-users"></i> About</button>
+        <button class="nav-btn" data-page="admission"><i class="fas fa-pen-fancy"></i> Admission</button>
+      </div>
+      <div class="theme-toggle" id="themeToggle">
+        <button class="active" data-theme="dark" title="Dark Mode"><i class="fas fa-moon"></i></button>
+        <button data-theme="light" title="Light Mode"><i class="fas fa-sun"></i></button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HOME -->
+  <div id="page-home" class="page">
+    <div class="hero">
+      <div>
+        <h2>Code. Build.<br /><span class="highlight">Next7Gen.</span></h2>
+        <p>Master in-demand skills with live, interactive coding courses. Learn from industry experts and build the future.</p>
+        <div class="hero-stats">
+          <div>10+ <span>courses</span></div>
+          <div>1200+ <span>students</span></div>
+          <div>98% <span>placement</span></div>
+        </div>
+        <button class="btn-sell" style="margin-top:1.2rem;" onclick="navigateTo('courses')"><i class="fas fa-rocket"></i> explore courses</button>
+      </div>
+      <div class="hero-right">
+        <div class="logo-big">next7gen</div>
+        <h3>learn from experts</h3>
+        <p>full-stack · data · cloud · cyber</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- COURSES -->
+  <div id="page-courses" class="page hidden">
+    <h2 class="section-title">🎯 our courses <span class="badge">🔥 trending</span></h2>
+    <p class="section-sub">Enroll now and start your journey. Each course includes live sessions &amp; projects.</p>
+    <div class="courses-grid">
+      <div class="course-card">
+        <div class="logo-mini">✦ n7g</div>
+        <h4>Full Stack MERN</h4>
+        <div class="price">₹29,999 <small>+ GST</small></div>
+        <div class="features"><span>📱 40+ hrs</span><span>⚡ live sessions</span></div>
+        <button class="btn-sell" onclick="alert('✅ Course added to cart (demo)')"><i class="fas fa-cart-plus"></i> enroll now</button>
+      </div>
+      <div class="course-card">
+        <div class="logo-mini">✦ n7g</div>
+        <h4>Data Science &amp; AI</h4>
+        <div class="price">₹34,999 <small>+ GST</small></div>
+        <div class="features"><span>📊 50+ hrs</span><span>🧠 AI focus</span></div>
+        <button class="btn-sell" onclick="alert('✅ Course added to cart (demo)')"><i class="fas fa-cart-plus"></i> enroll now</button>
+      </div>
+      <div class="course-card">
+        <div class="logo-mini">✦ n7g</div>
+        <h4>Cloud Architecture</h4>
+        <div class="price">₹27,499 <small>+ GST</small></div>
+        <div class="features"><span>☁️ AWS/Azure</span><span>🔧 35+ hrs</span></div>
+        <button class="btn-sell" onclick="alert('✅ Course added to cart (demo)')"><i class="fas fa-cart-plus"></i> enroll now</button>
+      </div>
+      <div class="course-card">
+        <div class="logo-mini">✦ n7g</div>
+        <h4>Cybersecurity</h4>
+        <div class="price">₹31,999 <small>+ GST</small></div>
+        <div class="features"><span>🔒 ethical hacking</span><span>🛡️ 45+ hrs</span></div>
+        <button class="btn-sell" onclick="alert('✅ Course added to cart (demo)')"><i class="fas fa-cart-plus"></i> enroll now</button>
+      </div>
+    </div>
+    <p style="margin-top:0.8rem; font-weight:500; color:var(--text-muted);"><i class="fas fa-arrow-right" style="color:#a78bfa;"></i> all courses include certificate &amp; placement support</p>
+  </div>
+
+  <!-- BLOG -->
+  <div id="page-blog" class="page hidden">
+    <h2 class="section-title">📝 latest tech updates <span class="badge">📰 blog</span></h2>
+    <p class="section-sub">Stay ahead with the latest in technology, coding trends, and industry insights.</p>
+    <div class="blog-grid">
+      <div class="blog-card">
+        <div class="blog-image">
+          <span class="blog-tag">🎯 AI</span>
+          <i class="fas fa-robot"></i>
+        </div>
+        <div class="blog-content">
+          <div class="blog-date"><i class="far fa-calendar-alt"></i> June 28, 2026</div>
+          <h4>AI Revolution: What's Next for Developers?</h4>
+          <p>Explore how artificial intelligence is reshaping the development landscape and what skills you need to stay relevant.</p>
+          <a href="#" class="read-more" onclick="alert('📖 Full article coming soon!'); return false;">Read More <i class="fas fa-arrow-right"></i></a>
+        </div>
+      </div>
+      <div class="blog-card">
+        <div class="blog-image">
+          <span class="blog-tag">⚡ Web</span>
+          <i class="fas fa-globe"></i>
+        </div>
+        <div class="blog-content">
+          <div class="blog-date"><i class="far fa-calendar-alt"></i> June 25, 2026</div>
+          <h4>WebAssembly: The Future of Web Performance</h4>
+          <p>Discover how WebAssembly is enabling near-native performance in the browser and opening new possibilities.</p>
+          <a href="#" class="read-more" onclick="alert('📖 Full article coming soon!'); return false;">Read More <i class="fas fa-arrow-right"></i></a>
+        </div>
+      </div>
+      <div class="blog-card">
+        <div class="blog-image">
+          <span class="blog-tag">☁️ Cloud</span>
+          <i class="fas fa-cloud"></i>
+        </div>
+        <div class="blog-content">
+          <div class="blog-date"><i class="far fa-calendar-alt"></i> June 22, 2026</div>
+          <h4>Cloud Native Architecture: Best Practices 2026</h4>
+          <p>Learn the latest trends and best practices for building scalable, resilient cloud-native applications.</p>
+          <a href="#" class="read-more" onclick="alert('📖 Full article coming soon!'); return false;">Read More <i class="fas fa-arrow-right"></i></a>
+        </div>
+      </div>
+      <div class="blog-card">
+        <div class="blog-image">
+          <span class="blog-tag">🔒 Security</span>
+          <i class="fas fa-shield-alt"></i>
+        </div>
+        <div class="blog-content">
+          <div class="blog-date"><i class="far fa-calendar-alt"></i> June 19, 2026</div>
+          <h4>Zero Trust Security: A Developer's Guide</h4>
+          <p>Understanding the zero trust security model and how to implement it in your development workflow.</p>
+          <a href="#" class="read-more" onclick="alert('📖 Full article coming soon!'); return false;">Read More <i class="fas fa-arrow-right"></i></a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ABOUT -->
+  <div id="page-about" class="page hidden">
+    <div class="about-grid">
+      <div class="about-text">
+        <h3><i class="fas fa-info-circle"></i> about next7gen</h3>
+        <p>We are a next-generation coding institute focused on practical, project-based learning. Our mentors are industry veterans from top tech companies.</p>
+        <p><span class="highlight-text">We believe in learning by doing</span> — every course includes real-world projects, code reviews, and 1:1 mentorship.</p>
+        <div class="about-stats">
+          <div>4.9 ⭐ <span>rating</span></div>
+          <div>98% <span>placement rate</span></div>
+          <div>200+ <span>hiring partners</span></div>
+        </div>
+      </div>
+      <div class="about-image">
+        <img src="WhatsApp Image 2026-06-29 at 10.47.03 PM.jpeg" alt="next7gen institute logo" />
+      </div>
+    </div>
+  </div>
+
+  <!-- ADMISSION + EXCEL -->
+  <div id="page-admission" class="page hidden">
+    <div class="admission-wrapper">
+      <div class="form-card">
+        <h2><i class="fas fa-pen-fancy"></i> student admission</h2>
+        <p>Fill details → data connects to Excel sheet</p>
+        <form id="admissionForm" class="form-grid">
+          <div class="input-group"><label><i class="fas fa-user"></i> full name</label><input type="text" id="fullName" placeholder="Aryan Sharma" required /></div>
+          <div class="row-duo">
+            <div class="input-group"><label><i class="fas fa-envelope"></i> email</label><input type="email" id="email" placeholder="student@email.com" required /></div>
+            <div class="input-group"><label><i class="fas fa-phone"></i> phone</label><input type="tel" id="phone" placeholder="+91 98765 43210" required /></div>
+          </div>
+          <div class="input-group"><label><i class="fas fa-book-open"></i> course</label><select id="course" required><option value="">— select —</option><option value="fullstack-dev">Full Stack MERN</option><option value="data-science">Data Science &amp; AI</option><option value="cloud-arch">Cloud Architecture</option><option value="cyber-sec">Cybersecurity</option></select></div>
+          <div class="input-group"><label><i class="fas fa-calendar"></i> start date</label><input type="date" id="startDate" required /></div>
+          <button type="submit" class="btn-primary" id="admitBtn"><i class="fas fa-pen-fancy"></i> admit → excel sheet</button>
+          <div id="toastMessage" class="toast-msg"><i class="fas fa-check-circle"></i> <span id="toastText">✅ data sent</span></div>
+        </form>
+      </div>
+      <div class="excel-panel">
+        <h3><i class="fas fa-table"></i> excel sheet <span class="excel-badge">● live</span></h3>
+        <div class="sync-status">
+          <span class="pulse-dot"></span>
+          <span style="font-weight:600;">sync active</span>
+          <span style="margin-left:auto; background:var(--bg-card); padding:0.1rem 1rem; border-radius:30px; font-size:0.8rem; color:var(--text-secondary); border:1px solid var(--border-color);">row #<span id="rowCount">12</span></span>
+        </div>
+        <div style="background:var(--bg-card); border-radius:24px; padding:1rem; border:1px solid var(--border-color);">
+          <div style="display:flex; justify-content:space-between; font-weight:700; border-bottom:1px solid var(--border-color); padding-bottom:0.4rem; color:var(--text-secondary);"><span>📋 latest admission</span></div>
+          <div class="preview-row"><span>name</span><span id="previewName">Aarav Mehta</span></div>
+          <div class="preview-row"><span>email</span><span id="previewEmail">aarav@next7.in</span></div>
+          <div class="preview-row"><span>course</span><span id="previewCourse">Full Stack MERN</span></div>
+          <div class="preview-row"><span>start</span><span id="previewStart">2026-07-20</span></div>
+        </div>
+        <div style="margin-top:1.2rem; background:var(--bg-card); border-radius:30px; padding:0.6rem 1.2rem; font-size:0.9rem; display:flex; gap:10px; color:var(--text-muted); border:1px solid var(--border-color);"><i class="fas fa-file-excel" style="color:#34d399;"></i> <span><strong>google sheet</strong> · all admissions appear in real time</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  (function() {
+    "use strict";
+
+    // ----- Theme Toggle -----
+    const themeToggle = document.getElementById('themeToggle');
+    const themeButtons = themeToggle.querySelectorAll('button');
+    const html = document.documentElement;
+
+    // Set initial theme from localStorage or default to dark
+    let currentTheme = localStorage.getItem('theme') || 'dark';
+    html.setAttribute('data-theme', currentTheme);
+
+    themeButtons.forEach(btn => {
+      if (btn.dataset.theme === currentTheme) {
+        btn.classList.add('active');
+      } else {
+        btn.classList.remove('active');
+      }
+    });
+
+    themeButtons.forEach(btn => {
+      btn.addEventListener('click', function() {
+        const theme = this.dataset.theme;
+        html.setAttribute('data-theme', theme);
+        localStorage.setItem('theme', theme);
+        themeButtons.forEach(b => b.classList.remove('active'));
+        this.classList.add('active');
+      });
+    });
+
+    // ----- Navigation -----
+    const navBtns = document.querySelectorAll('.nav-btn');
+    const pages = {
+      home: document.getElementById('page-home'),
+      courses: document.getElementById('page-courses'),
+      blog: document.getElementById('page-blog'),
+      about: document.getElementById('page-about'),
+      admission: document.getElementById('page-admission')
+    };
+
+    function navigateTo(pageId) {
+      Object.keys(pages).forEach(key => {
+        pages[key].classList.add('hidden');
+      });
+      if (pages[pageId]) pages[pageId].classList.remove('hidden');
+      navBtns.forEach(btn => {
+        btn.classList.remove('active');
+        if (btn.dataset.page === pageId) btn.classList.add('active');
+      });
+    }
+
+    navBtns.forEach(btn => {
+      btn.addEventListener('click', function(e) {
+        const page = this.dataset.page;
+        if (page) navigateTo(page);
+      });
+    });
+
+    window.navigateTo = navigateTo;
+
+    // ----- ADMISSION + EXCEL SHEET (simulated) -----
+    const form = document.getElementById('admissionForm');
+    const fullName = document.getElementById('fullName');
+    const email = document.getElementById('email');
+    const phone = document.getElementById('phone');
+    const course = document.getElementById('course');
+    const startDate = document.getElementById('startDate');
+    const toast = document.getElementById('toastMessage');
+    const toastText = document.getElementById('toastText');
+    const previewName = document.getElementById('previewName');
+    const previewEmail = document.getElementById('previewEmail');
+    const previewCourse = document.getElementById('previewCourse');
+    const previewStart = document.getElementById('previewStart');
+    const rowCount = document.getElementById('rowCount');
+
+    function updatePreview(name, emailVal, courseVal, startVal) {
+      if (name) previewName.textContent = name;
+      if (emailVal) previewEmail.textContent = emailVal;
+      if (courseVal) {
+        const map = { 'fullstack-dev':'Full Stack MERN', 'data-science':'Data Science & AI', 'cloud-arch':'Cloud Architecture', 'cyber-sec':'Cybersecurity' };
+        previewCourse.textContent = map[courseVal] || courseVal;
+      }
+      if (startVal) previewStart.textContent = startVal;
+    }
+
+    function showToast(msg, isSuccess = true) {
+      toastText.textContent = msg;
+      toast.className = 'toast-msg show';
+      toast.style.background = isSuccess ? 'rgba(124, 58, 237, 0.15)' : 'rgba(220, 50, 50, 0.15)';
+      toast.style.borderColor = isSuccess ? 'rgba(124, 58, 237, 0.1)' : 'rgba(220, 50, 50, 0.1)';
+      setTimeout(() => { toast.className = 'toast-msg'; }, 4000);
+    }
+
+    function sendToExcel(data) {
+      return new Promise((resolve) => {
+        let records = JSON.parse(localStorage.getItem('next7gen_admissions') || '[]');
+        records.push({ ...data, timestamp: new Date().toISOString() });
+        localStorage.setItem('next7gen_admissions', JSON.stringify(records));
+        updatePreview(data.name, data.email, data.course, data.startDate);
+        rowCount.textContent = records.length + 10;
+        setTimeout(() => resolve({ success: true }), 400);
+      });
+    }
+
+    function loadFromLocal() {
+      try {
+        const records = JSON.parse(localStorage.getItem('next7gen_admissions') || '[]');
+        if (records.length > 0) {
+          const last = records[records.length - 1];
+          updatePreview(last.name, last.email, last.course, last.startDate);
+          rowCount.textContent = records.length + 10;
+        }
+      } catch (_) {}
+    }
+    loadFromLocal();
+
+    form.addEventListener('submit', async function(e) {
+      e.preventDefault();
+      const name = fullName.value.trim(), emailVal = email.value.trim(), phoneVal = phone.value.trim();
+      const courseVal = course.value, startVal = startDate.value;
+      if (!name || !emailVal || !phoneVal || !courseVal || !startVal) {
+        showToast('⚠️ please fill all fields', false);
+        return;
+      }
+      const btn = document.getElementById('admitBtn');
+      btn.disabled = true; btn.innerHTML = '<i class="fas fa-spinner fa-pulse"></i> sending ...';
+      try {
+        const result = await sendToExcel({ name, email: emailVal, phone: phoneVal, course: courseVal, startDate: startVal });
+        if (result.success) { showToast('✅ admission saved · excel sheet updated', true); form.reset(); }
+        else showToast('⚠️ error', false);
+      } catch (_) { showToast('⚠️ connection error', false); }
+      btn.disabled = false; btn.innerHTML = '<i class="fas fa-pen-fancy"></i> admit → excel sheet';
+    });
+
+    (function() {
+      const d = new Date(); d.setDate(d.getDate() + 1);
+      const y = d.getFullYear(), m = String(d.getMonth()+1).padStart(2,'0'), day = String(d.getDate()).padStart(2,'0');
+      if (!startDate.value) startDate.value = `${y}-${m}-${day}`;
+    })();
+
+  })();
+</script>
+</body>
+</html>
