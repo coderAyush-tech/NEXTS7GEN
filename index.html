@@ -1,10 +1,9 @@
-```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5, user-scalable=yes" />
-  <title>NextS7Gen · institute</title>
+  <title>Next7Gen · institute</title>
   <!-- Google Font: Inter for a crisp, professional look -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -1127,8 +1126,8 @@
   <nav class="navbar">
     <div class="brand">
       <a href="#" class="brand-logo" onclick="navigateTo('home'); return false;">
-        <img src="logo.jpeg" alt="NextS7Gen logo" />
-        <span class="logo-text">NextS7Gen <small>institute</small></span>
+        <img src="logo.jpeg" alt="Next7Gen logo" />
+        <span class="logo-text">Next7Gen <small>institute</small></span>
       </a>
     </div>
     <div class="nav-right">
@@ -1150,7 +1149,7 @@
   <div id="page-home" class="page">
     <div class="hero">
       <div>
-        <h2>Code. Build.<br /><span class="highlight">NextS7Gen.</span></h2>
+        <h2>Code. Build.<br /><span class="highlight">Next7Gen.</span></h2>
         <p>Master in-demand skills with live, interactive coding courses. Learn from industry experts and build the future.</p>
         <div class="hero-stats">
           <div>4+ <span>courses</span></div>
@@ -1159,7 +1158,7 @@
         <button class="btn-sell" style="margin-top:1.2rem;" onclick="navigateTo('courses')"><i class="fas fa-rocket"></i> explore courses</button>
       </div>
       <div class="hero-right">
-        <div class="logo-big">NextS7Gen</div>
+        <div class="logo-big">Next7Gen</div>
         <h3>learn from experts</h3>
         <p>full-stack · data · cloud · cyber</p>
       </div>
@@ -1263,7 +1262,7 @@
   <div id="page-about" class="page hidden">
     <div class="about-grid">
       <div class="about-text">
-        <h3><i class="fas fa-info-circle"></i> About NextS7Gen</h3>
+        <h3><i class="fas fa-info-circle"></i> About Next7Gen</h3>
         <p>We are a <strong>next-generation coding institute</strong> focused on practical, project-based learning. Our mentors are industry veterans from top tech companies.</p>
         <p><span class="highlight-text">We believe in learning by doing</span> — every course includes real-world projects, code reviews, and 1:1 mentorship.</p>
         
@@ -1279,7 +1278,7 @@
         </div>
       </div>
       <div class="about-image">
-        <img src="WhatsApp Image 2026-06-29 at 10.47.03 PM.jpeg" alt="NextS7Gen institute logo" />
+        <img src="WhatsApp Image 2026-06-29 at 10.47.03 PM.jpeg" alt="Next7Gen institute logo" />
       </div>
     </div>
   </div>
@@ -1291,7 +1290,7 @@
     <div class="admission-wrapper">
       <div class="form-card">
         <h2><i class="fas fa-pen-fancy"></i> Apply For Admission</h2>
-       
+        <p><i class="fas fa-arrow-right" style="color:#7c3aed;"></i> Fill the form below. Your data will be saved to our Excel spreadsheet.</p>
 
         <!-- ENQUIRY BAR - CALL BUTTONS -->
         <div class="enquiry-bar">
@@ -1351,7 +1350,13 @@
                 <span>💰 One Time Payment</span>
               </label>
               <label>
-                
+                <input type="radio" name="payment" value="Installments (3 Months)" />
+                <span>📆 Installments (3 Months)</span>
+              </label>
+              <label>
+                <input type="radio" name="payment" value="Scholarship" />
+                <span>🎓 Scholarship</span>
+              </label>
             </div>
           </div>
 
@@ -1520,9 +1525,9 @@
 
     function sendToExcel(data) {
       return new Promise((resolve) => {
-        let records = JSON.parse(localStorage.getItem('NextS7Gen_admissions') || '[]');
+        let records = JSON.parse(localStorage.getItem('Next7Gen_admissions') || '[]');
         records.push({ ...data, timestamp: new Date().toISOString() });
-        localStorage.setItem('NextS7Gen_admissions', JSON.stringify(records));
+        localStorage.setItem('Next7Gen_admissions', JSON.stringify(records));
         updatePreview(data.name, data.email, data.course, data.payment, data.message);
         rowCount.textContent = records.length + 10;
         setTimeout(() => resolve({ success: true }), 400);
@@ -1531,7 +1536,7 @@
 
     function loadFromLocal() {
       try {
-        const records = JSON.parse(localStorage.getItem('NextS7Gen_admissions') || '[]');
+        const records = JSON.parse(localStorage.getItem('Next7Gen_admissions') || '[]');
         if (records.length > 0) {
           const last = records[records.length - 1];
           updatePreview(last.name, last.email, last.course, last.payment, last.message);
@@ -1570,23 +1575,69 @@
       };
 
       try {
-        // Save to localStorage (demo) — replace with API call for production
-        let records = JSON.parse(localStorage.getItem('NextS7Gen_admissions') || '[]');
+        // ============================================================
+        // 🔹 OPTION 1: Save to localStorage (Demo)
+        // ============================================================
+        let records = JSON.parse(localStorage.getItem('Next7Gen_admissions') || '[]');
         records.push(formData);
-        localStorage.setItem('NextS7Gen_admissions', JSON.stringify(records));
+        localStorage.setItem('Next7Gen_admissions', JSON.stringify(records));
         updatePreview(name, emailVal, courseVal, paymentVal, messageVal);
         rowCount.textContent = records.length + 10;
 
         // ============================================================
-        // 🔹 For Google Sheets / Excel API, uncomment below:
+        // 🔹 OPTION 2: Send to Google Sheets (UNCOMMENT TO USE)
+        //    Replace 'YOUR_WEB_APP_URL' with your Apps Script URL
         // ============================================================
-        /*
-        const response = await fetch('https://your-google-sheets-api-url', {
+        
+        const response = await fetch('https://script.google.com/macros/s/AKfycbyurPgXDDoj2WbWn2DVWBQyCan4ggUAqghY6OnPCTX9qapbdbA38UG2ui-WPe36p-G7zw/exec', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(formData)
         });
-        if (!response.ok) throw new Error('Network error');
+        const result = await response.json();
+        if (!result.success) throw new Error(result.error || 'Network error');
+        
+
+        // ============================================================
+        // 🔹 OPTION 3: Send to Node.js Backend (UNCOMMENT TO USE)
+        //    Make sure your server is running on port 3000
+        // ============================================================
+        /*
+        const response = await fetch('http://localhost:3000/api/admission', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(formData)
+        });
+        const result = await response.json();
+        if (!result.success) throw new Error(result.error || 'Server error');
+        */
+
+        // ============================================================
+        // 🔹 OPTION 4: Send to Airtable (UNCOMMENT TO USE)
+        //    Replace with your Base ID and API Key
+        // ============================================================
+        /*
+        const response = await fetch('https://api.airtable.com/v0/YOUR_BASE_ID/Admissions', {
+          method: 'POST',
+          headers: {
+            'Authorization': 'Bearer YOUR_API_KEY',
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            records: [{
+              fields: {
+                'Name': formData.name,
+                'Email': formData.email,
+                'Phone': formData.phone,
+                'Course': formData.course,
+                'Payment': formData.payment,
+                'Message': formData.message
+              }
+            }]
+          })
+        });
+        const result = await response.json();
+        if (!response.ok) throw new Error(result.error || 'Airtable error');
         */
 
         showToast('✅ Application submitted! Data saved to Excel sheet.', true);
@@ -1610,9 +1661,8 @@
     // Set default payment
     document.querySelector('input[name="payment"][value="One Time Payment"]').checked = true;
 
-    console.log('📋 Existing admissions:', JSON.parse(localStorage.getItem('NextS7Gen_admissions') || '[]'));
+    console.log('📋 Existing admissions:', JSON.parse(localStorage.getItem('Next7Gen_admissions') || '[]'));
   })();
 </script>
 </body>
 </html>
-```
