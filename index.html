@@ -3,11 +3,11 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5, user-scalable=yes" />
-  <title>next7gen · institute</title>
-  <!-- Google Font -->
+  <title> Next7Gen · institute</title>
+  <!-- Google Font: Inter for a crisp, professional look -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
   <style>
     * {
@@ -55,7 +55,7 @@
     }
 
     body {
-      font-family: 'Space Grotesk', sans-serif;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
       background: var(--bg-body);
       min-height: 100vh;
       padding: 1.5rem;
@@ -69,7 +69,6 @@
         radial-gradient(ellipse at 50% 100%, rgba(180, 60, 220, 0.03) 0%, transparent 40%);
     }
 
-    /* ---- main app container ---- */
     .app {
       max-width: 1400px;
       width: 100%;
@@ -85,7 +84,6 @@
       transition: all 0.4s ease;
     }
 
-    /* animated gradient orbs */
     .app::before {
       content: '';
       position: absolute;
@@ -120,7 +118,7 @@
       66% { transform: translate(20px, -10px) scale(0.9); }
     }
 
-    /* ---- navigation ---- */
+    /* ---- NAVIGATION ---- */
     .navbar {
       display: flex;
       flex-wrap: wrap;
@@ -169,6 +167,7 @@
       -webkit-background-clip: text;
       background-clip: text;
       color: transparent;
+      font-family: 'Inter', sans-serif;
     }
     .brand-logo .logo-text small {
       font-size: 0.8rem;
@@ -179,6 +178,7 @@
       border-radius: 40px;
       border: 1px solid var(--border-color);
       margin-left: 4px;
+      font-family: 'Inter', sans-serif;
     }
 
     .nav-right {
@@ -211,7 +211,7 @@
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      font-family: 'Space Grotesk', sans-serif;
+      font-family: 'Inter', sans-serif;
       position: relative;
     }
 
@@ -234,7 +234,7 @@
       background: var(--bg-card);
     }
 
-    /* ---- Theme Toggle ---- */
+    /* ---- THEME TOGGLE ---- */
     .theme-toggle {
       background: var(--bg-nav);
       border: 1px solid var(--border-color);
@@ -254,7 +254,7 @@
       cursor: pointer;
       color: var(--text-muted);
       transition: all 0.3s ease;
-      font-family: 'Space Grotesk', sans-serif;
+      font-family: 'Inter', sans-serif;
     }
     .theme-toggle button.active {
       background: linear-gradient(135deg, rgba(120, 80, 240, 0.2), rgba(60, 130, 240, 0.1));
@@ -264,7 +264,7 @@
       color: var(--text-secondary);
     }
 
-    /* ---- page container ---- */
+    /* ---- PAGES ---- */
     .page {
       display: block;
       animation: fadePage 0.4s ease;
@@ -281,7 +281,7 @@
       display: none;
     }
 
-    /* ----- HOME PAGE ----- */
+    /* ----- HOME ----- */
     .hero {
       display: grid;
       grid-template-columns: 1.2fr 0.8fr;
@@ -299,6 +299,7 @@
       -webkit-background-clip: text;
       background-clip: text;
       color: transparent;
+      font-family: 'Inter', sans-serif;
     }
     .hero .highlight {
       background: linear-gradient(135deg, #a78bfa, #818cf8);
@@ -313,6 +314,7 @@
       margin: 0.8rem 0 1.8rem;
       font-weight: 400;
       line-height: 1.7;
+      font-family: 'Inter', sans-serif;
     }
     .hero-stats {
       display: flex;
@@ -329,6 +331,7 @@
       font-weight: 700;
       color: var(--text-secondary);
       transition: all 0.3s ease;
+      font-family: 'Inter', sans-serif;
     }
     .hero-stats div:hover {
       border-color: rgba(120, 80, 240, 0.2);
@@ -372,6 +375,7 @@
       color: transparent;
       position: relative;
       z-index: 1;
+      font-family: 'Inter', sans-serif;
     }
     .hero-right h3 {
       margin-top: 0.6rem;
@@ -379,12 +383,14 @@
       color: var(--text-secondary);
       position: relative;
       z-index: 1;
+      font-family: 'Inter', sans-serif;
     }
     .hero-right p {
       color: var(--text-muted);
       margin-top: 0.3rem;
       position: relative;
       z-index: 1;
+      font-family: 'Inter', sans-serif;
     }
 
     /* ----- BUTTONS ----- */
@@ -401,7 +407,7 @@
       cursor: pointer;
       transition: all 0.3s ease;
       font-size: 0.95rem;
-      font-family: 'Space Grotesk', sans-serif;
+      font-family: 'Inter', sans-serif;
       border: 1px solid rgba(255, 255, 255, 0.05);
       position: relative;
       overflow: hidden;
@@ -438,6 +444,7 @@
       align-items: center;
       gap: 12px;
       flex-wrap: wrap;
+      font-family: 'Inter', sans-serif;
     }
     .section-title .badge {
       font-size: 0.7rem;
@@ -448,10 +455,12 @@
       border: 1px solid rgba(16, 185, 129, 0.08);
       font-weight: 600;
       letter-spacing: 0.03em;
+      font-family: 'Inter', sans-serif;
     }
     .section-sub {
       color: var(--text-muted);
       margin-bottom: 1.5rem;
+      font-family: 'Inter', sans-serif;
     }
 
     .courses-grid {
@@ -499,11 +508,13 @@
       margin-bottom: 1rem;
       color: #a78bfa;
       border: 1px solid rgba(124, 58, 237, 0.06);
+      font-family: 'Inter', sans-serif;
     }
     .course-card h4 {
       font-size: 1.4rem;
       font-weight: 600;
       color: var(--text-primary);
+      font-family: 'Inter', sans-serif;
     }
     .course-card .price {
       font-weight: 700;
@@ -513,6 +524,7 @@
       background-clip: text;
       color: transparent;
       margin: 0.4rem 0 0.8rem;
+      font-family: 'Inter', sans-serif;
     }
     .course-card .price small {
       font-weight: 400;
@@ -534,6 +546,7 @@
       padding: 0.2rem 0.8rem;
       border-radius: 40px;
       border: 1px solid var(--border-color);
+      font-family: 'Inter', sans-serif;
     }
 
     /* ----- BLOG ----- */
@@ -581,6 +594,7 @@
       font-size: 0.7rem;
       font-weight: 600;
       border: 1px solid rgba(124, 58, 237, 0.1);
+      font-family: 'Inter', sans-serif;
     }
     .blog-card .blog-content {
       padding: 1.5rem;
@@ -589,17 +603,20 @@
       font-size: 0.75rem;
       color: var(--text-muted);
       margin-bottom: 0.5rem;
+      font-family: 'Inter', sans-serif;
     }
     .blog-card .blog-content h4 {
       font-size: 1.2rem;
       font-weight: 600;
       color: var(--text-primary);
       margin-bottom: 0.5rem;
+      font-family: 'Inter', sans-serif;
     }
     .blog-card .blog-content p {
       color: var(--text-muted);
       font-size: 0.9rem;
       line-height: 1.6;
+      font-family: 'Inter', sans-serif;
     }
     .blog-card .blog-content .read-more {
       display: inline-flex;
@@ -612,12 +629,13 @@
       cursor: pointer;
       transition: gap 0.3s ease;
       text-decoration: none;
+      font-family: 'Inter', sans-serif;
     }
     .blog-card .blog-content .read-more:hover {
       gap: 12px;
     }
 
-    /* ----- ABOUT ----- */
+    /* ----- ABOUT (UPDATED WITH PROFESSIONAL FONT & CONTENT) ----- */
     .about-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -627,14 +645,17 @@
     .about-text {
       background: var(--bg-card);
       backdrop-filter: blur(4px);
-      padding: 2rem;
+      padding: 2.5rem;
       border-radius: 2rem;
       border: 1px solid var(--border-color);
     }
     .about-text h3 {
-      font-size: 2.2rem;
+      font-size: 2.4rem;
       font-weight: 700;
       color: var(--text-primary);
+      font-family: 'Inter', sans-serif;
+      letter-spacing: -0.02em;
+      margin-bottom: 0.5rem;
     }
     .about-text h3 i {
       color: #a78bfa;
@@ -643,17 +664,41 @@
     .about-text p {
       margin-top: 0.8rem;
       color: var(--text-muted);
-      line-height: 1.7;
+      line-height: 1.8;
+      font-family: 'Inter', sans-serif;
+      font-weight: 400;
+      font-size: 1.05rem;
     }
     .about-text .highlight-text {
       color: var(--text-secondary);
       font-weight: 500;
+      font-family: 'Inter', sans-serif;
+    }
+    .about-text .mission-block {
+      margin-top: 1.8rem;
+      padding: 1.2rem 1.5rem;
+      background: rgba(124, 58, 237, 0.04);
+      border-radius: 1.2rem;
+      border-left: 4px solid #7c3aed;
+      font-style: normal;
+    }
+    .about-text .mission-block p {
+      margin: 0.3rem 0;
+      font-weight: 500;
+      color: var(--text-secondary);
+      font-family: 'Inter', sans-serif;
+      font-size: 0.98rem;
+    }
+    .about-text .mission-block i {
+      color: #a78bfa;
+      margin-right: 8px;
+      width: 20px;
     }
     .about-stats {
       display: flex;
       flex-wrap: wrap;
       gap: 1rem;
-      margin-top: 1.5rem;
+      margin-top: 2rem;
     }
     .about-stats div {
       background: var(--bg-card);
@@ -663,6 +708,7 @@
       color: var(--text-secondary);
       border: 1px solid var(--border-color);
       transition: all 0.3s ease;
+      font-family: 'Inter', sans-serif;
     }
     .about-stats div:hover {
       border-color: rgba(120, 80, 240, 0.2);
@@ -723,6 +769,7 @@
       font-size: 1.8rem;
       color: var(--text-primary);
       margin-bottom: 0.2rem;
+      font-family: 'Inter', sans-serif;
     }
     .form-card h2 i {
       color: #a78bfa;
@@ -730,6 +777,7 @@
     }
     .form-card p {
       color: var(--text-muted);
+      font-family: 'Inter', sans-serif;
     }
     .form-grid {
       display: flex;
@@ -746,6 +794,7 @@
       font-weight: 600;
       font-size: 0.85rem;
       color: var(--text-muted);
+      font-family: 'Inter', sans-serif;
     }
     .input-group label i {
       color: #a78bfa;
@@ -756,7 +805,7 @@
       padding: 0.9rem 1.2rem;
       border: 1px solid var(--border-color);
       border-radius: 30px;
-      font-family: 'Space Grotesk', sans-serif;
+      font-family: 'Inter', sans-serif;
       background: var(--bg-input);
       color: var(--text-primary);
       transition: all 0.3s ease;
@@ -789,6 +838,7 @@
       gap: 10px;
       font-weight: 700;
       color: var(--text-primary);
+      font-family: 'Inter', sans-serif;
     }
     .excel-panel h3 i {
       color: #a78bfa;
@@ -802,6 +852,7 @@
       border: 1px solid rgba(16, 185, 129, 0.08);
       font-weight: 600;
       letter-spacing: 0.03em;
+      font-family: 'Inter', sans-serif;
     }
     .sync-status {
       background: var(--bg-card);
@@ -813,6 +864,7 @@
       align-items: center;
       color: var(--text-muted);
       border: 1px solid var(--border-color);
+      font-family: 'Inter', sans-serif;
     }
     .sync-status .pulse-dot {
       width: 8px;
@@ -832,6 +884,7 @@
       padding: 0.6rem 0;
       border-bottom: 1px solid var(--border-color);
       color: var(--text-muted);
+      font-family: 'Inter', sans-serif;
     }
     .preview-row span:last-child {
       color: var(--text-secondary);
@@ -847,6 +900,7 @@
       align-items: center;
       gap: 12px;
       border: 1px solid rgba(124, 58, 237, 0.05);
+      font-family: 'Inter', sans-serif;
     }
     .toast-msg.show { display: flex; }
 
@@ -882,8 +936,8 @@
       .courses-grid { grid-template-columns: 1fr; }
       .blog-grid { grid-template-columns: 1fr; }
       .about-image { min-height: 160px; }
-      .about-text { padding: 1.2rem; }
-      .about-text h3 { font-size: 1.6rem; }
+      .about-text { padding: 1.5rem; }
+      .about-text h3 { font-size: 1.8rem; }
       .form-card { padding: 1.2rem; }
       .excel-panel { padding: 1.2rem; }
       .nav-btn { padding: 0.4rem 1rem; font-size: 0.8rem; }
@@ -909,7 +963,7 @@
   <nav class="navbar">
     <div class="brand">
       <a href="#" class="brand-logo" onclick="navigateTo('home'); return false;">
-        <img src="WhatsApp Image 2026-06-29 at 10.47.03 PM.jpeg" alt="next7gen logo" />
+        <img src="logo.jpeg" alt="next7gen logo" />
         <span class="logo-text">next7gen <small>institute</small></span>
       </a>
     </div>
@@ -935,9 +989,8 @@
         <h2>Code. Build.<br /><span class="highlight">Next7Gen.</span></h2>
         <p>Master in-demand skills with live, interactive coding courses. Learn from industry experts and build the future.</p>
         <div class="hero-stats">
-          <div>10+ <span>courses</span></div>
-          <div>1200+ <span>students</span></div>
-          <div>98% <span>placement</span></div>
+          <div>4+ <span>courses</span></div>
+          <div><span>Placement Guidance</span></div>
         </div>
         <button class="btn-sell" style="margin-top:1.2rem;" onclick="navigateTo('courses')"><i class="fas fa-rocket"></i> explore courses</button>
       </div>
@@ -983,7 +1036,7 @@
         <button class="btn-sell" onclick="alert('✅ Course added to cart (demo)')"><i class="fas fa-cart-plus"></i> enroll now</button>
       </div>
     </div>
-    <p style="margin-top:0.8rem; font-weight:500; color:var(--text-muted);"><i class="fas fa-arrow-right" style="color:#a78bfa;"></i> all courses include certificate &amp; placement support</p>
+    <p style="margin-top:0.8rem; font-weight:500; color:var(--text-muted); font-family:'Inter',sans-serif;"><i class="fas fa-arrow-right" style="color:#a78bfa;"></i> all courses include certificate &amp; placement support</p>
   </div>
 
   <!-- BLOG -->
@@ -1042,17 +1095,23 @@
     </div>
   </div>
 
-  <!-- ABOUT -->
+  <!-- ABOUT (UPDATED WITH PROFESSIONAL FONT & RICH CONTENT) -->
   <div id="page-about" class="page hidden">
     <div class="about-grid">
       <div class="about-text">
-        <h3><i class="fas fa-info-circle"></i> about next7gen</h3>
-        <p>We are a next-generation coding institute focused on practical, project-based learning. Our mentors are industry veterans from top tech companies.</p>
+        <h3><i class="fas fa-info-circle"></i> About Next7Gen</h3>
+        <p>We are a <strong>next-generation coding institute</strong> focused on practical, project-based learning. Our mentors are industry veterans from top tech companies.</p>
         <p><span class="highlight-text">We believe in learning by doing</span> — every course includes real-world projects, code reviews, and 1:1 mentorship.</p>
+        
+        <div class="mission-block">
+          <p><i class="fas fa-bullseye"></i> <strong>Our Motive</strong></p>
+          <p style="font-weight:400; color:var(--text-muted);">To make every student interview-ready — from coding basics to advanced problem-solving, with a strong foundation and practical confidence.</p>
+          <p style="font-weight:400; color:var(--text-muted); margin-top:0.5rem;"><i class="fas fa-check-circle" style="color:#34d399;"></i> Learn from basics · build real projects · crack interviews</p>
+        </div>
+
         <div class="about-stats">
           <div>4.9 ⭐ <span>rating</span></div>
-          <div>98% <span>placement rate</span></div>
-          <div>200+ <span>hiring partners</span></div>
+          <div><span>placement Guidance</span></div>
         </div>
       </div>
       <div class="about-image">
@@ -1061,7 +1120,7 @@
     </div>
   </div>
 
-  <!-- ADMISSION + EXCEL -->
+  <!-- ADMISSION -->
   <div id="page-admission" class="page hidden">
     <div class="admission-wrapper">
       <div class="form-card">
@@ -1087,13 +1146,13 @@
           <span style="margin-left:auto; background:var(--bg-card); padding:0.1rem 1rem; border-radius:30px; font-size:0.8rem; color:var(--text-secondary); border:1px solid var(--border-color);">row #<span id="rowCount">12</span></span>
         </div>
         <div style="background:var(--bg-card); border-radius:24px; padding:1rem; border:1px solid var(--border-color);">
-          <div style="display:flex; justify-content:space-between; font-weight:700; border-bottom:1px solid var(--border-color); padding-bottom:0.4rem; color:var(--text-secondary);"><span>📋 latest admission</span></div>
+          <div style="display:flex; justify-content:space-between; font-weight:700; border-bottom:1px solid var(--border-color); padding-bottom:0.4rem; color:var(--text-secondary); font-family:'Inter',sans-serif;"><span>📋 latest admission</span></div>
           <div class="preview-row"><span>name</span><span id="previewName">Aarav Mehta</span></div>
           <div class="preview-row"><span>email</span><span id="previewEmail">aarav@next7.in</span></div>
           <div class="preview-row"><span>course</span><span id="previewCourse">Full Stack MERN</span></div>
           <div class="preview-row"><span>start</span><span id="previewStart">2026-07-20</span></div>
         </div>
-        <div style="margin-top:1.2rem; background:var(--bg-card); border-radius:30px; padding:0.6rem 1.2rem; font-size:0.9rem; display:flex; gap:10px; color:var(--text-muted); border:1px solid var(--border-color);"><i class="fas fa-file-excel" style="color:#34d399;"></i> <span><strong>google sheet</strong> · all admissions appear in real time</span></div>
+        <div style="margin-top:1.2rem; background:var(--bg-card); border-radius:30px; padding:0.6rem 1.2rem; font-size:0.9rem; display:flex; gap:10px; color:var(--text-muted); border:1px solid var(--border-color); font-family:'Inter',sans-serif;"><i class="fas fa-file-excel" style="color:#34d399;"></i> <span><strong>google sheet</strong> · all admissions appear in real time</span></div>
       </div>
     </div>
   </div>
@@ -1103,12 +1162,11 @@
   (function() {
     "use strict";
 
-    // ----- Theme Toggle -----
+    // Theme Toggle
     const themeToggle = document.getElementById('themeToggle');
     const themeButtons = themeToggle.querySelectorAll('button');
     const html = document.documentElement;
 
-    // Set initial theme from localStorage or default to dark
     let currentTheme = localStorage.getItem('theme') || 'dark';
     html.setAttribute('data-theme', currentTheme);
 
@@ -1130,7 +1188,7 @@
       });
     });
 
-    // ----- Navigation -----
+    // Navigation
     const navBtns = document.querySelectorAll('.nav-btn');
     const pages = {
       home: document.getElementById('page-home'),
@@ -1160,7 +1218,7 @@
 
     window.navigateTo = navigateTo;
 
-    // ----- ADMISSION + EXCEL SHEET (simulated) -----
+    // Admission + Excel
     const form = document.getElementById('admissionForm');
     const fullName = document.getElementById('fullName');
     const email = document.getElementById('email');
